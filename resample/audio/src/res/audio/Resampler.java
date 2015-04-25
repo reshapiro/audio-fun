@@ -7,9 +7,14 @@ import java.io.IOException;
 public class Resampler {
 
 	private final String sample;
+	
+	@SuppressWarnings("unused")
+	/* will be used later */
+	private final File outputDirectory;
 
-	public Resampler(String sample) {
+	public Resampler(String sample, File outputDirectory) {
 		this.sample = sample;
+		this.outputDirectory = outputDirectory;
 	}
 
 	private void processFile(File file) {
@@ -36,6 +41,7 @@ public class Resampler {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
+			/* interrupts are ok */
 		}
 		
 	}
@@ -51,6 +57,7 @@ public class Resampler {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
+			/* interrupts are ok */
 		}
 		
 	}
@@ -65,6 +72,7 @@ public class Resampler {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
+			/* interrupts are ok */
 		}
 		
 		
@@ -74,14 +82,25 @@ public class Resampler {
 		if (args.length < 2) {
 			throw new IllegalArgumentException();
 		}
-		File directory = new File(args[0]);
+		File inputDirectory = new File(args[0]);
 		String sample = args[1];
-		if (directory.isDirectory()) {
-			
-		} else {
-			throw new IllegalArgumentException(directory + "is not a directory");
+		
+		
+		File outputDirectory = null;
+		
+		if (args.length > 2) {
+			outputDirectory = new File(args[2]);
+			if (!outputDirectory.exists() && ! outputDirectory.mkdirs()) {
+				throw new IllegalArgumentException("output directory" + outputDirectory + " does not exist and cannot be created");
+			}
 		}
-		File[] files = directory.listFiles(new FilenameFilter() {
+		
+		if (!inputDirectory.isDirectory()) {
+			
+			throw new IllegalArgumentException(inputDirectory + "is not a directory");
+		}
+			
+		File[] files = inputDirectory.listFiles(new FilenameFilter() {
 			
 			@Override
 			public boolean accept(File dir, String name) {
@@ -89,11 +108,11 @@ public class Resampler {
 			}
 		});
 		if (files.length == 0) {
-			System.err.println("No flac files in " + directory);
+			System.err.println("No flac files in " + inputDirectory);
 			System.exit(0);
 		}
 		
-		Resampler worker = new Resampler(sample);
+		Resampler worker = new Resampler(sample, outputDirectory);
 		for (File file : files) {
 			worker.processFile(file);
 		}
