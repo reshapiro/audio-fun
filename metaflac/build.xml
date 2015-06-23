@@ -4,17 +4,26 @@
 	<property name="src.dir" value="src" />
 	<property name="classes.dir" value="classes" />
 	<property name="artifacts.dir" value="artifacts" />
+	<property name="main.class" value="res.meta.flac.MetaflacInit" />
 
 
-	<target name="build" description="compiles any Java files">
-		<javac srcdir="${src.dir}" destdir="${classes.dir}"  source="${source.version}" target="${target.version}" debug="yes" includeantruntime="false">
+	<target name="clean">
+		<delete dir="${classes.dir}" />
+	</target>
+	<target name="build" description="compiles any Java files" depends="clean">
+		<mkdir dir="${classes.dir}" />
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" source="${source.version}" target="${target.version}" debug="yes" includeantruntime="false">
 			<compilerarg value="-Xlint:unchecked" />
 		</javac>
 	</target>
 
 	<target name="jar" depends="build">
+
 		<jar destfile="${artifacts.dir}/mfl.jar">
-			<fileset dir="${classes.dir}"/>
+			<fileset dir="${classes.dir}" />
+			<manifest>
+				<attribute name="Main-Class" value="${main.class}" />
+			</manifest>
 		</jar>
 	</target>
 
