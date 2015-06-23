@@ -30,25 +30,32 @@ public class MetaflacInit {
 	private final File[] flacFiles;
 	private int index;
 	private final List<String> otherValues = new ArrayList<>();
+	private final boolean install;
 	
 	MetaflacInit(String...args) {
-		
 		String flacDirPath = args[0];
 		String metaFlacDirPath = args[1];
-		for (int i=2; i< args.length; i++) {
-			otherValues.add(args[i]);
+		install = args.length == 3 && "--install".equals(args[2]);
+		if (!install) {
+			for (int i=2; i< args.length; i++) {
+				otherValues.add(args[i]);
+			}
 		}
-		
-		metaFlacDir = new File(metaFlacDirPath);
-		
-		if (!metaFlacDir.isDirectory() && !metaFlacDir.mkdirs()) {
-			fail(metaFlacDirPath + "does not exist and cannot be created");
-		}
-		
 		this.flacDir = new File(flacDirPath);
 		if (!flacDir.isDirectory()) {
 			fail(flacDirPath + " is not a directory");
 		}
+		
+		metaFlacDir = new File(metaFlacDirPath);
+		if (install && !metaFlacDir.isDirectory()) {
+			fail(metaFlacDirPath + " is not a directory");
+		} else {
+			if (!metaFlacDir.isDirectory() && !metaFlacDir.mkdirs()) {
+				fail(metaFlacDirPath + "does not exist and cannot be created");
+			}
+		}
+		
+		
 		flacFiles = flacDir.listFiles(new FilenameFilter() {
 			@Override
 			public boolean accept(File dir, String name) {
@@ -62,9 +69,27 @@ public class MetaflacInit {
 	private void processDirectory() {
 		if (flacFiles != null) {
 			for (File flacFile : flacFiles) {
-				createMetaData(flacFile);
+				if (install) {
+					installMetatData(flacFile);
+				} else {
+					createMetaData(flacFile);
+				}
 			}
 		}
+	}
+
+	private void installMetatData(File flacFile) {
+		String name = flacFile.getName();
+		String title = name = name.substring(0, name.indexOf('.'));
+		String metaFileName =  title + ".mfl";
+		File metaFlacFile = new File(metaFlacDir, metaFileName);
+		ProcessBuilder builder = new ProcessBuilder("/usr/local/bin/metaflac","--import-tags-from=" + metaFlacFile.getAbsolutePath(), flacFile.getAbsolutePath());
+		try {
+			builder.start();
+		} catch (IOException e) {
+			fail(e.getMessage());
+		}
+		
 	}
 
 	private void createMetaData(File flacFile) {
@@ -104,7 +129,11 @@ public class MetaflacInit {
 	 * arg1 should be the path to a directory of .flac files.
 	 * arg2 should be a path to a directory for the genertated metadata.  This directory will be created if it doesn't already exist.
 	 * 
-	 * The remaining args should be name=value strings where the name is a  valid FLAC tag.
+	 * If there are exactly three arguments and the third argument is --install, the flac files will be updated from the metaflac files.
+	 * 
+	 * 
+	 * Otherwise metaflac files will be created for each flac file and any arguments after the first two will be added to each metaflac file.
+	 * 
 	 * If an optional value includes any spaces you must quote it: ARTIST="Ornette Coleman", not  ARTIST=Ornette Coleman
 	 */
 	public static void main(String[] args) {
