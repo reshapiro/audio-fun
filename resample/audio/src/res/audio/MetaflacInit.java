@@ -83,7 +83,7 @@ public class MetaflacInit {
 		String title = name = name.substring(0, name.indexOf('.'));
 		String metaFileName =  title + ".mfl";
 		File metaFlacFile = new File(metaFlacDir, metaFileName);
-		ProcessBuilder builder = new ProcessBuilder("/usr/local/bin/metaflac","--import-tags-from=" + metaFlacFile.getAbsolutePath(), flacFile.getAbsolutePath());
+		ProcessBuilder builder = new ProcessBuilder("metaflac","--import-tags-from=" + metaFlacFile.getAbsolutePath(), flacFile.getAbsolutePath());
 		try {
 			builder.start();
 		} catch (IOException e) {
