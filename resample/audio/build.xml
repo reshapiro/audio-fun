@@ -1,0 +1,21 @@
+<project name="meta.flac" default="jar">
+	<property name="target.version" value="1.8" />
+	<property name="source.version" value="1.8" />
+	<property name="src.dir" value="src" />
+	<property name="classes.dir" value="classes" />
+	<property name="artifacts.dir" value="artifacts" />
+
+
+	<target name="build" description="compiles any Java files">
+		<javac srcdir="${src.dir}" destdir="${classes.dir}"  source="${source.version}" target="${target.version}" debug="yes" includeantruntime="false">
+			<compilerarg value="-Xlint:unchecked" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="build">
+		<jar destfile="${artifacts.dir}/mfl.jar">
+			<fileset dir="${classes.dir}"/>
+		</jar>
+	</target>
+
+</project>
