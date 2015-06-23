@@ -1,4 +1,4 @@
-package res.audio;
+package res.meta.flac;
 
 import java.io.File;
 import java.io.FileWriter;
