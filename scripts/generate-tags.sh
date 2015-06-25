@@ -2,7 +2,7 @@
 flacdir=$1
 metaflacdir=$2
 
-mkdir "$metaflacdir"
+mkdir -p "$metaflacdir"
 
 total=0
 for f in $flacdir/*.flac

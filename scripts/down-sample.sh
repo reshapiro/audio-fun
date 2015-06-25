@@ -1,7 +1,7 @@
 #!/bin/sh
 dir=$1
 newdir=$2
-mkdir $newdir
+mkdir -p $newdir
 for file in "$dir"/*.flac
 do
    fname=`basename "${file}"`
