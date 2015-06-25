@@ -31,7 +31,9 @@ The arguments are the tags directory and the flac directory.
 To run this the *metaflac* command must be on your PATH.
 
 <h2>show-all-tags-in-directory</h2>
-This script does what it says: displays all tags of all flac files in a given directory.
+This script displays all tags of all flac files in a given directory.
+
+It has one required argument, the name of the flac directory.
 
 To run this the *metaflac* command must be on your PATH.
 
@@ -41,12 +43,17 @@ The two down-sample scripts use sox to resample high def audio  to 16/44.1 for u
 Invoke these on a directory of hi-def files.  The *sox* command must be on your PATH.
 
 <h2>down-sample</h2>
-This version writes the down-sampled files to to a parallel directory which must be provided as the second argument. This directory will be created if necessary.
 
-Normally the second directory should *not* exist, but you can append to an existing one if you like.
+This version writes the down-sampled files to to a parallel directory 
+
+It has two required arguments: the directory of hi-def audio files and a directory to store the down-sampled files.
+
+This second directory will be created if necessary. Normally this directory should *not* exist, but you can append to an existing one if you like.
 
 <h2>down-sample-inline</h2> 
 This version <em>replaces</em> the existing files with the down-sampled version!  Use with caution!!
+
+It has one required argument, the directory of hi-def audio files.
 
 
 
