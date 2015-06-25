@@ -6,6 +6,7 @@ Originally much of this was written in Java. That's still around but deprecated.
 This script tries to create basic metaflac tags from a directory of flac files that have no tags yet.
 
 The required arguments are a directory of flac files and a second directory to store the tag files. The tag directory will be created if it doesn't exist yet.
+Normally the tags directory should *not* exist, but you can append to an existing one if you like.
 
 Any number of other arguments in standard metaflac name=value form can be included as well, eg  ARTIST=Ornette\ Coleman.
 
@@ -41,6 +42,8 @@ Invoke these on a directory of hi-def files.  The *sox* command must be on your 
 
 <h2>down-sample</h2>
 This version writes the down-sampled files to to a parallel directory which must be provided as the second argument. This directory will be created if necessary.
+
+Normally the second directory should *not* exist, but you can append to an existing one if you like.
 
 <h2>down-sample-inline</h2> 
 This version <em>replaces</em> the existing files with the down-sampled version!  Use with caution!!
