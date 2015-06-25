@@ -35,14 +35,14 @@ This script does what it says: displays all tags of all flac files in a given di
 To run this the *metaflac* command must be on your PATH.
 
 <h1>sox</h1>
-The two 24-16 scripts use sox to resample high def audio  to 16/44.1 for use with systems like Sonos that don't support hi-def.
+The two down-sample scripts use sox to resample high def audio  to 16/44.1 for use with systems like Sonos that don't support hi-def.
 
 Invoke these on a directory of hi-def files.  The *sox* command must be on your PATH.
 
-<h2>24-16-batch</h2>
+<h2>down-sample</h2>
 This version writes the down-sampled files to to a parallel directory which must be provided as the second argument. This directory will be created if necessary.
 
-<h2>24-16-inline</h2> 
+<h2>down-sample-inline</h2> 
 This version <em>replaces</em> the existing files with the down-sampled version!  Use with caution!!
 
 
