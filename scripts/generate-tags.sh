@@ -1,4 +1,16 @@
 #!/bin/sh
+
+if [ $# -lt 2 ]; then
+    echo "At least two arguments are required."
+    echo
+    echo "The first argument should be a directory containing flac files."
+    echo "The second argument should name the directory which will be created and will contain a tags file for each flac file."
+    echo
+    echo "You can add any number of other arguments in name=value form where name is a flac tag, for instance ARTIST=Bob\ Dylan"
+    echo "If a value includes whitespace it must be quoted, as above"
+    exit -1
+fi
+
 flacdir=$1
 metaflacdir=$2
 
