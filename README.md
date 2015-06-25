@@ -1,11 +1,11 @@
-This repository includes an number of convenient shell scripts for metaflac and sox.
+This repository includes several convenience shell scripts for metaflac and sox.
 Originally much of this was written in Java. That's still around but deprecated.
 <h1>Flac</h1>
 
-<h2>generate-metaflac</h2> 
+<h2>generate-tags</h2> 
 This script tries to create basic metaflac tags from a directory of flac files that have no tags yet.
 
-The required arguments are the metaflac directory and the flac directory, in that order.  The second is used to store a parallel collection of metaflac files and will be created if it doesn't exist yet.
+The required arguments are a directory of flac files and a second directory to store the tag files. The tag directory will be created if it doesn't exist yet.
 
 Any number of other arguments in standard metaflac name=value form can be included as well, eg  ARTIST=Ornette\ Coleman.
 
@@ -21,10 +21,11 @@ TRACKTOTAL: This is the total number of flac files.
 
 The optional arguments will be added as is to each file.
 
-Note that this script does not actually add the tags to flac files.  Its purpose is to provide an initial set of tag values in a separate file that can be edited manually before importing. To do the import, use **meta-flac-import** (see below).
+Note that this script does not actually add the tags to flac files.  Its purpose is to provide an initial set of tag values in a separate files that can be edited manually before importing. To do the import, use **import-tags** (see below).
 
-<h2>meta-flac-import</h2>
-This  script imports a directory of metaflac files into a parallel directory of flac files.
+<h2>import-tags</h2>
+This  script imports a directory of tag files into a parallel directory of flac files.
+The arguments are the tags directory and the flac directory.
 
 To run this the *metaflac* command must be on your PATH.
 
