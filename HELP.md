@@ -1,3 +1,12 @@
+<h2>export-tags</h2> 
+This script exports extant metaflac tags from a directory of flac files.
+
+The required arguments are a directory of flac files and a second directory to store the tag files. The tag directory will be created if it doesn't exist yet.
+Normally the tags directory should *not* exist, but you can append to an existing one if you like.
+
+To run this the metaflac command must be on your PATH.
+
+
 <h2>generate-tags</h2> 
 This script tries to create basic metaflac tags from a directory of flac files that have no tags yet.
 
