@@ -34,27 +34,18 @@ It has one required argument, the name of the flac directory.
 To run this the *metaflac* command must be on your PATH.
 
 <h1>sox</h1>
-The two down-sample scripts use sox to resample high def audio  to 16/44.1 for use with systems like Sonos that don't support hi-def.
-
-Invoke these on a directory of hi-def files.  The *sox* command must be on your PATH.
 
 <h2>down-sample</h2>
 
-This version writes the down-sampled files to to a parallel directory 
+This script will down-sample a directory of hi-def audio files, saving the results to a parallel directory.
 
-It has two required arguments: the directory of hi-def audio files and a directory to store the down-sampled files.
+Use this if you have hi-def files but a player that only supports standard CD quality.
 
-This second directory will be created if necessary. Normally this directory should *not* exist, but you can append to an existing one if you like.
+It has two required arguments, a directory of hi-def audio files and directory to store the down-sampled files.
 
-<h2>down-sample-inline</h2> 
-This version <em>replaces</em> the existing files with the down-sampled version!  Use with caution!!
+By default the sample rate is 44100 and the sample size is 16
 
-It has one required argument, the directory of hi-def audio files.
-
-
-
-
-
+To use a different values, provide them in that order as optional arguments.
 
 
 
