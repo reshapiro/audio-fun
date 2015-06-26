@@ -9,6 +9,12 @@ if [ $# -lt 2 ]; then
 fi
 
 dir=$1
+
+f [  ! -d "$dir" ]; then
+  echo "The directory $dir does not exist"
+  exit -2
+fi
+
 newdir=$2
 mkdir -p $newdir
 for file in "$dir"/*.flac

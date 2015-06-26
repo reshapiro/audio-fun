@@ -11,6 +11,16 @@ fi
 metaflacdir=$1
 flacdir=$2
 
+if [  ! -d "$flacdir" ]; then
+  echo "The directory $flacdir does not exist"
+  exit -2
+fi
+
+if [  ! -d "$metaflacdir" ]; then
+  echo "The directory $metaflacdir does not exist"
+  exit -2
+fi
+
 for file in "$flacdir"/*.flac
 do
    base=`basename "$file" .flac`

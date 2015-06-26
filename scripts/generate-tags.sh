@@ -12,6 +12,12 @@ if [ $# -lt 2 ]; then
 fi
 
 flacdir=$1
+
+if [  ! -d "$flacdir" ]; then
+  echo "The directory $flacdir does not exist"
+  exit -2
+fi
+
 metaflacdir=$2
 
 mkdir -p "$metaflacdir"
