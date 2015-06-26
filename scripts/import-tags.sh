@@ -8,23 +8,23 @@ if [ $# -lt 2 ]; then
     exit -1
 fi
 
-metaflacdir=$1
-flacdir=$2
+tagsdir="$1"
+flacdir="$2"
 
 if [  ! -d "$flacdir" ]; then
-  echo "The directory $flacdir does not exist"
+  echo "The directory "$flacdir" does not exist"
   exit -2
 fi
 
-if [  ! -d "$metaflacdir" ]; then
-  echo "The directory $metaflacdir does not exist"
+if [  ! -d "$tagsdir" ]; then
+  echo "The directory "$tagsdir" does not exist"
   exit -2
 fi
 
 for file in "$flacdir"/*.flac
 do
    base=`basename "$file" .flac`
-   metaflacfile=${metaflacdir}/"${base}".mfl
-   echo "importing $metaflacfile to $file"
-   metaflac --import-tags-from="$metaflacfile" "$file"
+   tagsfile=${tagsdir}/"${base}".tag
+   echo "importing $tagsfile to $file"
+   metaflac --import-tags-from="$tagsfile" "$file"
 done

@@ -5,10 +5,11 @@ if [ $# -lt 1 ]; then
     exit -1
 fi
 
-dir=$1
+dir="$1"
 
-f [  ! -d "$dir" ]; then
-  echo "The directory $dir does not exist"
+# echo "directory is  "$dir""
+if [  ! -d "$dir" ]; then
+  echo "The directory "$dir" does not exist"
   exit -2
 fi
 

@@ -11,35 +11,35 @@ if [ $# -lt 2 ]; then
     exit -1
 fi
 
-flacdir=$1
+flacdir="$1"
 
 if [  ! -d "$flacdir" ]; then
   echo "The directory $flacdir does not exist"
   exit -2
 fi
 
-metaflacdir=$2
+tagsdir="$2"
 
-mkdir -p "$metaflacdir"
+mkdir -p "$tagsdir"
 
 total=0
-for f in $flacdir/*.flac
+for f in "$flacdir"/*.flac
  do
    total=`expr $total + 1`
  done
 
 
 index=1
-for f in $flacdir/*.flac
+for f in "$flacdir"/*.flac
  do
- # echo " file is $f"
+#  echo " file is $f"
   base=`basename "$f" ".flac"`
-  # echo " basename is  $base"
-  metaflacfile="$metaflacdir"/"$base".mfl
-#  echo "mf file is "$metaflacfile""
-  echo "TITLE"=$base"" >> "$metaflacfile"
-  echo "TRACKNUMBER=$index" >> "$metaflacfile"
-  echo "TRACKTOTAL=$total" >> "$metaflacfile"
+# echo " basename is  $base"
+  tagsfile="$tagsdir"/"$base".tag
+#  echo "mf file is "$tagsfile""
+  echo "TITLE"=$base"" >> "$tagsfile"
+  echo "TRACKNUMBER=$index" >> "$tagsfile"
+  echo "TRACKTOTAL=$total" >> "$tagsfile"
  # add the varargs should probably be a function. 
  
  
@@ -47,7 +47,7 @@ for f in $flacdir/*.flac
   for var in "$@"
 do
   if [ $vardex -ge 3 ]; then 
-     echo "$var" >> "$metaflacfile"
+     echo "$var" >> "$tagsflacfile"
   fi
   vardex=`expr $vardex + 1`
 done
