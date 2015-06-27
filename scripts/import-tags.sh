@@ -25,6 +25,6 @@ for file in "$flacdir"/*.flac
 do
    base=`basename "$file" .flac`
    tagsfile=${tagsdir}/"${base}".tag
-   echo "importing $tagsfile to $file"
+#   echo "importing $tagsfile to $file"
    metaflac --import-tags-from="$tagsfile" "$file"
 done
