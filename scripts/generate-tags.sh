@@ -47,7 +47,7 @@ for f in "$flacdir"/*.flac
   for var in "$@"
 do
   if [ $vardex -ge 3 ]; then 
-     echo "$var" >> "$tagsflacfile"
+     echo "$var" >> "$tagsfile"
   fi
   vardex=`expr $vardex + 1`
 done
