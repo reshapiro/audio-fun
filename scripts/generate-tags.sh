@@ -1,14 +1,34 @@
 #!/bin/sh
 
 if [ $# -lt 2 ]; then
-    echo "At least two arguments are required."
     echo
-    echo "The first argument should be a directory containing flac files."
-    echo "The second argument should name the directory which will be created and will contain a tags file for each flac file."
+    echo "This operation tries to generate and save flac tags given a directory of flac files."
+    echo "To run this the metaflac command must be on your PATH."
+    echo
+    echo "No tags will be added to the flac files themselves"
+    echo "Instead the tags will be saved to a parallel directory where you can edit them if necessary"
+    echo "To add tags to the flac files use import-tags.sh or replace-tags.sh"
+    echo
+    echo "The tag generation logic is as follows:"
+    echo
+    echo "The ALBUM tag is derived form the basename of flac directory."
+    echo  "The TITLE tag is derived from the basename of each flac file, sans .flac suffix."
+    echo "The TRACKNUMBER tag is derived from the position of the flac file in the directory"
+    echo "The TRACKTOTAL tag is derived from the number of flac files in the directory"
+    
+    echo
+    echo "Required arguments:"
+    echo
+    echo "The name of the directory of flac files"
+    echo "The name of the directory in which the corresponding tag files should be saved"
+    echo "The flac directory must exist already"
+    echo "The tags directory generally should not exist yet"
+    echo
+    echo "Optional arguments:"
     echo
     echo "You can add any number of other arguments in name=value form where name is a flac tag, for instance ARTIST=Bob\ Dylan"
-    echo "If a value includes whitespace it must be quoted, as above"
-    exit -1
+    echo "If a value includes whitespace it must be quoted, as in example above"
+    exit 0
 fi
 
 flacdir="$1"

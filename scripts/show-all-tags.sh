@@ -1,8 +1,14 @@
 #!/bin/sh
 
 if [ $# -lt 1 ]; then
-    echo "No flac directory was provided"
-    exit -1
+    echo
+    echo "This operation will display all tags of all flac files in a given directory"
+    echo "To run this the metaflac command must be on your PATH."
+    echo
+    echo "Required arguments:"
+    echo
+    echo "The name of the directory of flac files"
+    exit 0
 fi
 
 dir="$1"

@@ -1,15 +1,21 @@
 #!/bin/sh
 
 if [ $# -lt 2 ]; then
-    echo "Two arguments are required."
     echo
-    
-    echo "The first argument should be a directory containing hi-def audio files."
-    echo "The second argument should name the directory which will be created and will contain a down-sampled file for each hi-def file"
-    echo "An optional third argument can be used to specify the sample rate if you don't want  to sample at 48k rather 44100"
-    echo "An optional fourth argument can be used to specify the sample size if you don't want 16"
-    
-    exit -1
+    echo "This operation down-samples each audio file in a given directory, saving the results to a parallel directory"
+    echo "Use this if you have hi-def audio files you want to hear through a player or DAC that only supports CD quality audio"
+    echo
+    echo "Required arguments:"
+    echo
+    echo "The directory of audio files to be down-sampled."
+    echo "The directory in which the down-sampled files will be saved. It will be created if it doesn't exit yet"
+    echo
+    echo "Optional arguments:"
+    echo
+    echo "The desired sample size. The default is 16"
+    echo "The desired sample rate. The default is 44100"
+    echo "If the original file has a rate or 96000 and 192000 or you might get better results with 48k instead of 44100"
+    exit 0
 fi
 dir="$1"
 newdir="$2"

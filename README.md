@@ -7,6 +7,3 @@ Specifically there are scripts to
 <h1> Downsample a directory of hi-def audio files to a parallel directory of 16/44.1 files.</h1>
 
 Originally much of this was written in Java. That's still around but deprecated.
-
-
-For more details see HELP.md

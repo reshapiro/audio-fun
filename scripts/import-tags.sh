@@ -1,11 +1,20 @@
 #!/bin/sh
 
 if [ $# -lt 2 ]; then
-    echo "Two arguments are required."
     echo
-    echo "The first argument should be a directory containing tags files."
-    echo "The second argument should be a parallel directory containing flac files"
-    exit -1
+    echo "For each tag file in a given directory, this operation will add all the tags in that file  a corresponding flac file file in a parallel directory" 
+    echo "To run this the metaflac command must be on your PATH."
+    echo
+    echo "Required arguments:"
+    echo
+    echo "The name of a directory of tag files"
+    echo "The name of the parallel directory of flac files"
+    echo
+    echo "Both directories must exist"
+    echo
+    echo "Note that this operation can leade to duplicated tags."
+    echo "To replace tags rather than adding them, use replace-tags.sh"
+    exit 0
 fi
 
 tagsdir="$1"
