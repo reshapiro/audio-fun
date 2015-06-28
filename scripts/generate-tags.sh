@@ -50,6 +50,7 @@ for f in "$flacdir"/*.flac
 
 
 index=1
+album=`basename "$flacdir"`
 for f in "$flacdir"/*.flac
  do
 #  echo " file is $f"
@@ -60,17 +61,19 @@ for f in "$flacdir"/*.flac
   echo "TITLE"=$base"" >> "$tagsfile"
   echo "TRACKNUMBER=$index" >> "$tagsfile"
   echo "TRACKTOTAL=$total" >> "$tagsfile"
- # add the varargs should probably be a function. 
- 
- 
+  echo "ALBUM=$album" >> "$tagsfile"
+  
+  
+  
+  # add other tags
   vardex=1
   for var in "$@"
-do
-  if [ $vardex -ge 3 ]; then 
+  do
+   if [ $vardex -ge 3 ]; then 
      echo "$var" >> "$tagsfile"
-  fi
-  vardex=`expr $vardex + 1`
-done
+   fi
+    vardex=`expr $vardex + 1`
+  done
   
   
   index=`expr $index + 1`
