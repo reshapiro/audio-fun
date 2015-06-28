@@ -14,7 +14,7 @@ if [ $# -lt 2 ]; then
     echo
     echo "Note that this will remove all existing tags before adding the new ones."
     echo "As a precaution, the existing will be saved in a file with the suffix .bak"
-    echo "To add tags rather than replacing them, use import-tags.sh"
+    echo "To add tags rather than replacing them, use add-tags.sh"
     exit 0
 fi
 

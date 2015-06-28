@@ -7,7 +7,7 @@ if [ $# -lt 2 ]; then
     echo
     echo "No tags will be added to the flac files themselves"
     echo "Instead the tags will be saved to a parallel directory where you can edit them if necessary"
-    echo "To add tags to the flac files use import-tags.sh or replace-tags.sh"
+    echo "To add tags to the flac files use add-tags.sh or replace-tags.sh"
     echo
     echo "The tag generation logic is as follows:"
     echo

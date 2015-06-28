@@ -16,7 +16,7 @@ if [ $# -lt 1 ]; then
     echo
     echo "The name of a backup directory in which to save the current tags"
     echo "If this option is provided it will be used to save the current tags for each flac file"
-    echo "You could then restore the tags with import-tags.sh or replace-tags.sh"
+    echo "You could then restore the tags with replace-tags.sh"
     exit 0
 fi
 
