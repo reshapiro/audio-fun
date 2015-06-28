@@ -2,9 +2,9 @@
 
 if [ $# -lt 1 ]; then
     echo
-    echo "This operation will remove all tags of all flac files in a given directory"
+    echo "This operation will remove all tags of all flac files in a given directory.  Use with caution"
     echo
-    echo "Use with caution!"
+    echo "It will not remove any existing .tag or .bak files"
     echo
     echo "To run this the metaflac command must be on your PATH."
     echo
@@ -27,22 +27,8 @@ if [  ! -d "$dir" ]; then
   echo "The directory "$dir" does not exist"
   exit -2
 fi
-
-save=0
-if [ $# -gt 1 ]; then
-   save=1
-   backupdir="$2"
-   mkdir -p "$backupdir"
-fi
-
 for file in "$dir"/*.flac
 do
-   base=`basename "$file" .flac`
-   if [ $save -gt 0 ]; then
-   backupfile="$backupdir"/"$base".tag
-      metaflac --export-tags-to="$backupfile" "$file"
-   
-   fi
    metaflac --remove-all-tags "$file"
 done
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $# -lt 2 ]; then
+if [ $# -lt 1 ]; then
     echo
     echo "This operation tries to generate and save flac tags given a directory of flac files."
     echo "To run this the metaflac command must be on your PATH."
@@ -20,9 +20,6 @@ if [ $# -lt 2 ]; then
     echo "Required arguments:"
     echo
     echo "The name of the directory of flac files"
-    echo "The name of the directory in which the corresponding tag files should be saved"
-    echo "The flac directory must exist already"
-    echo "The tags directory generally should not exist yet"
     echo
     echo "Optional arguments:"
     echo
@@ -37,11 +34,6 @@ if [  ! -d "$flacdir" ]; then
   echo "The directory $flacdir does not exist"
   exit -2
 fi
-
-tagsdir="$2"
-
-mkdir -p "$tagsdir"
-
 total=0
 for f in "$flacdir"/*.flac
  do
@@ -56,7 +48,7 @@ for f in "$flacdir"/*.flac
 #  echo " file is $f"
   base=`basename "$f" ".flac"`
 # echo " basename is  $base"
-  tagsfile="$tagsdir"/"$base".tag
+  tagsfile="$flacdir"/"$base".tag
 #  echo "mf file is "$tagsfile""
   echo "TITLE"=$base"" >> "$tagsfile"
   echo "TRACKNUMBER=$index" >> "$tagsfile"
@@ -69,7 +61,7 @@ for f in "$flacdir"/*.flac
   vardex=1
   for var in "$@"
   do
-   if [ $vardex -ge 3 ]; then 
+   if [ $vardex -ge 2 ]; then 
      echo "$var" >> "$tagsfile"
    fi
     vardex=`expr $vardex + 1`
