@@ -32,11 +32,11 @@ if [  ! -d "$tagsdir" ]; then
 fi
 
 for file in "$flacdir"/*.flac
-do
+ do
    base=`basename "$file" .flac`
-   tagsfile=${tagsdir}/"${base}".tag
-   tagsbackup=${tagsdir}/"${base}".bak
-   echo "backing up old tags to "$tagsbackup"
+   tagsfile="$tagsdir"/"$base".tag
+   tagsbackup="$tagsdir"/"$base".bak
+   echo "backing up old tags to "$tagsbackup""
    metaflac --export-tags-to="$tagsbackup" "$file"
    metaflac --remove-all-tags "$file"
    metaflac --import-tags-from="$tagsfile" "$file"
