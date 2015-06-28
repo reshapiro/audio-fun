@@ -9,6 +9,9 @@ if [ $# -lt 1 ]; then
     echo
     echo "The name of a directory of tag files"
     echo
+    echo "Optional arguments"
+    echo
+    echo "To add from the backup specify bak as an optional argument"
     echo "Note that this operation can leade to duplicated tags."
     echo "To replace tags rather than adding them, use replace-tags.sh"
     exit 0
@@ -22,10 +25,16 @@ if [  ! -d "$flacdir" ]; then
   exit -2
 fi
 
+suffix=tag
+
+if [ $# -ge 1 ]; then
+   suffix=$2"
+fi   
+
 for file in "$flacdir"/*.flac
 do
    base=`basename "$file" .flac`
-   tagsfile=${flacdir}/"${base}".tag
+   tagsfile=${flacdir}/"${base}".$suffix
 #   echo "importing $tagsfile to $file"
    metaflac --import-tags-from="$tagsfile" "$file"
 done
