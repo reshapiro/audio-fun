@@ -14,5 +14,3 @@ The sox scripts are designed for easy re-sampling. For now there's only one whic
 to 16/44.1 or 16/48k for use with players or DACs that only support  CD audio.
 
 You must have the <em>sox</em> package installed to use this script. 
-
-Originally both sets of operations were written in Java. That's still around for reference but it's deprecated and out of date.
