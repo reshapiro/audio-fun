@@ -18,5 +18,5 @@ if [  ! -d "$dir" ]; then
   echo "The directory "$dir" does not exist"
   exit -2
 fi
-rm -rf "$dir"/*.tag
+rm -rf "$dir"/*.bak
 
