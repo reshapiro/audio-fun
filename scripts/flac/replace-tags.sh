@@ -12,7 +12,6 @@ if [ $# -lt 1 ]; then
     echo
     echo "Note that this will remove all existing tags before adding the new ones."
     echo "As a precaution, the existing will be saved in a file with the suffix .bak"
-    echo "To add tags rather than replacing them, use add-tags.sh"
     exit 0
 fi
 
@@ -27,6 +26,11 @@ for file in "$flacdir"/*.flac
  do
    base=`basename "$file" .flac`
    tagsfile="$flacdir"/"$base".tag
+   
+   if [ ! -f "$tagsfile" ]; then
+     echo "missing tags file for "$basename" "
+     continue
+   fi
    tagsbackup="$flacdir"/"$base".bak
    echo "backing up old tags to "$tagsbackup""
    metaflac --export-tags-to="$tagsbackup" "$file"
