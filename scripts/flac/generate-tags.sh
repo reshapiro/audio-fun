@@ -5,10 +5,6 @@ if [ $# -lt 1 ]; then
     echo "This operation tries to generate and save flac tags given a directory of flac files."
     echo "To run this the metaflac command must be on your PATH."
     echo
-    echo "No tags will be added to the flac files themselves"
-    echo "Instead the tags will be saved to a parallel directory where you can edit them if necessary"
-    echo "To add tags to the flac files use add-tags.sh or replace-tags.sh"
-    echo
     echo "The tag generation logic is as follows:"
     echo
     echo "The ALBUM tag is derived form the basename of flac directory."
@@ -34,13 +30,15 @@ if [  ! -d "$flacdir" ]; then
   echo "The directory $flacdir does not exist"
   exit -2
 fi
+
+#compute the track count
 total=0
 for f in "$flacdir"/*.flac
  do
    total=`expr $total + 1`
  done
 
-
+# generate the initial .tag files
 index=1
 album=`basename "$flacdir"`
 for f in "$flacdir"/*.flac
@@ -57,7 +55,7 @@ for f in "$flacdir"/*.flac
   
   
   
-  # add other tags
+  # add optional tags to each tag file
   vardex=1
   for var in "$@"
   do
@@ -69,4 +67,14 @@ for f in "$flacdir"/*.flac
   
   
   index=`expr $index + 1`
+done
+
+
+# import tags to eacg flac file
+for file in "$flacdir"/*.flac
+do
+   base=`basename "$file" .flac`
+   tagsfile=${flacdir}/"${base}".tag
+#   echo "importing $tagsfile to $file"
+   metaflac --import-tags-from="$tagsfile" "$file"
 done
