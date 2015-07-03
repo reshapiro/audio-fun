@@ -11,7 +11,7 @@ if [ $# -lt 1 ]; then
     echo
     echo
     echo "Note that this will remove all existing tags before adding the new ones."
-    echo "As a precaution, the existing will be saved in a file with the suffix .bak"
+    echo "As a precaution, a backup of the existing tags will be saved in a file with the suffix .bak"
     exit 0
 fi
 

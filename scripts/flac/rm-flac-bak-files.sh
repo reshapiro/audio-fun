@@ -2,7 +2,7 @@
 
 if [ $# -lt 1 ]; then
     echo
-    echo "This operation will remove all .tag and .bak files in a flac directory  Use with caution"
+    echo "This operation will remove all  .bak files in a flac directory"
     echo
     echo
     echo "Required arguments:"
@@ -18,5 +18,5 @@ if [  ! -d "$dir" ]; then
   echo "The directory "$dir" does not exist"
   exit -2
 fi
-rm -rf "$dir"/*.bak
+rm "$dir"/*.bak
 
