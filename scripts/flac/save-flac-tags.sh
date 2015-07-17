@@ -15,6 +15,14 @@ if [ $# -lt 1 ]; then
     exit 0
 fi
 
+if  [ -f "$1" ]; then
+	file="$1" 
+	base=`basename "$file" ".flac"`
+	tagsfile="$base".tag
+	metaflac --export-tags-to="$tagsfile" "$file"
+fi
+exit 0
+
 flacdir="$1"
 
 if [  ! -d "$flacdir" ]; then

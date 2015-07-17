@@ -20,6 +20,11 @@ if [ $# -lt 1 ]; then
     exit 0
 fi
 
+if  [ -f "$1" ]; then
+ metaflac --remove-all-tags "$1"
+fi
+exit 0
+
 dir="$1"
 
 # echo "directory is  "$dir""
