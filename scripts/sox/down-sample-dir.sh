@@ -3,13 +3,15 @@
 if [ $# -lt 2 ]; then
     echo
     echo "This operation down-samples each audio file in a given directory, saving the results to a parallel directory"
+    echo "Supported formats are aiff, aif, wav and flac.
     echo "Use this if you have hi-def audio files you want to hear through a player or DAC that only supports CD quality audio"
+    echo "NB: ALL files in the directory must be audio files. This operation will fail on the first non-audio file. 
     echo 
     echo "This operation requires sox to be on your PATH"
     echo
     echo "Required arguments:"
     echo
-    echo "The directory of audio files to be down-sampled."
+    echo "The directory of flac files to be down-sampled."
     echo "The directory in which the down-sampled files will be saved. It will be created if it doesn't exit yet"
     echo
     echo "Optional arguments: note for now order is significant"
@@ -41,7 +43,8 @@ if [  ! -d "$dir" ]; then
 fi
 
 mkdir -p $newdir
-for file in "$dir"/*.flac
+# TODO: ignore non-audio files instead of failing
+for file in "$dir"
 do
    fname=`basename "${file}"`
    new="$newdir"/"$fname"
