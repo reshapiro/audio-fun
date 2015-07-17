@@ -2,16 +2,18 @@
 
 if [ $# -lt 2 ]; then
     echo
-    echo "This operation down-samples an audio file saving the result to elsewhere"
+    echo "This operation down-samples an audio file saving the result elsewhere"
     echo "Use this if you have a hi-def audio file you want to hear through a player or DAC that only supports CD quality audio"
     echo 
     echo "This operation requires sox to be on your PATH"
     echo
     echo "Required arguments:"
     echo
-    echo "The audio file to be down-sampled."
-    echo "The file path for the resulting down-sampled file"
-     echo "Supported formats are aiff, wav and flac. Anything else will fail.
+    echo "The audio file to be down-sampled.  Must be aiff, wav of flac"
+    echo "The file path for the resulting down-sampled file.  This file should _not_ exist yet: am existing will never be overridden"
+    echo
+    echo "The suffix of the down-sampled file  path specifies what audio format it will be in"
+    echo "For example if the source file is wav and the destination file path is foo.flac, the resulting file will be flac, not wav"
     echo
     echo "Optional arguments: note for now order is significant"
     echo
@@ -42,7 +44,7 @@ if [  ! -f "$input" ]; then
 fi
 
 if [  -f "$output" ]; then
-	echo "cowardly refusing to clobber existing file "$output"  "
+	echo "Cowardly refusing to clobber existing file "$output"  "
 	exit -1
 fi
 
