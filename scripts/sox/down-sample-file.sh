@@ -11,7 +11,7 @@ if [ $# -lt 2 ]; then
     echo
     echo "The audio file to be down-sampled."
     echo "The file path for the resulting down-sampled file"
-     echo "Supported formats are aiff, aif, wav and flac. Anything else will fail.
+     echo "Supported formats are aiff, wav and flac. Anything else will fail.
     echo
     echo "Optional arguments: note for now order is significant"
     echo

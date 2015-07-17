@@ -3,7 +3,7 @@
 if [ $# -lt 2 ]; then
     echo
     echo "This operation down-samples each audio file in a given directory, saving the results to a parallel directory"
-    echo "Supported formats are aiff, aif, wav and flac.
+    echo "Supported formats are aiff, wav and flac.
     echo "Use this if you have hi-def audio files you want to hear through a player or DAC that only supports CD quality audio"
     echo "NB: ALL files in the directory must be audio files. This operation will fail on the first non-audio file. 
     echo 
