@@ -3,6 +3,9 @@
 if [ $# -lt 1 ]; then
     echo
     echo "This operation tries to generate and save flac tags given a directory of flac files."
+    echo "On completion all the flac files should have tags for at least ALBUM, TITLE,TRACKNUMBER and TRACKTOTAL"
+    echo "The directory will also contain a .tag file for each .flac file. These can be used later to add, edit or delete tag values"
+    echo "If you don't want to keep the .tag files around, simply delete *.tag. They can be recreated with save-flac-tags" 
     echo "To run this the metaflac command must be on your PATH."
     echo
     echo "The tag generation logic is as follows:"
