@@ -1,0 +1,17 @@
+#!/bin/sh
+
+cover="cover.jpg"
+
+if [ $# -ge 1 ]; then
+    cover=$"1"
+fi
+echo "Importing $cover"
+
+metaflac --import-picture-from="3|image/jpeg|||$cover" *.flac
+
+
+
+
+
+
+
