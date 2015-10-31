@@ -45,7 +45,7 @@ fi
 
 mkdir -p $newdir
 # TODO: ignore non-audio files instead of failing
-for file in "$dir"
+for file in "$dir"/*
 do
    fname=`basename "${file}"`
    new="$newdir"/"$fname"
