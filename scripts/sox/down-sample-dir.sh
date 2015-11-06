@@ -2,20 +2,20 @@
 
 if [ $# -lt 2 ]; then
     echo
-    echo "This operation down-samples selected audio files in a given directory, saving the results to a parallel directory"
+    echo "This operation down-samples each audio file in a given directory, saving the results to a parallel directory"
     echo "Use this if you have hi-def audio files you want to hear through a player or DAC that only supports CD quality audio"
     echo "Supported formats are aiff, wav and flac. The down-sampled file will be in the same audio format as the original"
     echo
-    echo "NB: this operation will fail on the first non-audio file."
+    echo "ALL files in the directory MUST be audio files. This operation will fail on the first non-audio file."
     echo 
-    echo "NB: This operation requires sox to be on your PATH"
+    echo "This operation requires sox to be on your PATH"
     echo
     echo "Required arguments:"
     echo
-    echo "A path to files to be down-sampled. for example /home/me/music/Miles\  Davis/*.flac"
-    echo "The directory in which the down-sampled files will be saved. It will be created if it doesn't exist yet"
+    echo "The directory of files to be down-sampled."
+    echo "The directory in which the down-sampled files will be saved. It will be created if it doesn't exit yet"
     echo
-    echo "Optional arguments:  For now order is significant"
+    echo "Optional arguments: note for now order is significant"
     echo
     echo "The desired sample rate. The default is 44100"
     echo "If the original file has a rate of 96000 and 192000 you might get better results with 48k instead of 44100"
@@ -48,6 +48,7 @@ mkdir -p $newdir
 for file in "$dir"/*
 do
    fname=`basename "${file}"`
+# TODO ignore this file if the name doesn't end with a known audio suffix
    new="$newdir"/"$fname"
    echo "convert "$file" to "$new"" 
     sox -S "${file}" -r $rate -b $size "$new" dither -s
