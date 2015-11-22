@@ -9,8 +9,8 @@ if [ $# -lt 2 ]; then
     echo
     echo "Required arguments:"
     echo
-    echo "The audio file to be down-sampled.  Must be aiff, wav of flac"
-    echo "The file path for the resulting down-sampled file.  This file should _not_ exist yet: am existing will never be overridden"
+    echo "The audio file to be down-sampled.  Must be aiff, wav or flac"
+    echo "The file path for the resulting down-sampled file.  This file should _not_ exist yet: an existing will never be overridden"
     echo
     echo "The suffix of the down-sampled file  path specifies what audio format it will be in"
     echo "For example if the source file is wav and the destination file path is foo.flac, the resulting file will be flac, not wav"
